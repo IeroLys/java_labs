@@ -8,7 +8,7 @@
 
 import java.util.Random;
 
-public class matrix {
+public class Matrix {
     public static void main(String[] args) {
         int[][] matrix = new int[8][8];
         Random random = new Random();
