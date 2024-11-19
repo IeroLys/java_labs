@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Arrays;
 
-public class simm {
+public class Simm {
     public static void main(String[] args) {
         int[] array = new int[20];
         Random random = new Random();
