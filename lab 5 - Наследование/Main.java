@@ -1,75 +1,111 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        // Task 1: Girls who got first places in Olympiads
-        List<Schoolkid> schoolkids = new ArrayList<>();
+        // Задача 1: Девушки, занявшие первые места на олимпиадах
+        List<SchoolStudent> schoolStudents = new ArrayList<>();
 
-        // Sample data for Schoolkids
-        Schoolkid kid1 = new Schoolkid("Alice", "female", 14);
-        Map<String, Integer> grades1 = new HashMap<>();
-        grades1.put("math", 5);
-        grades1.put("russian", 5);
-        grades1.put("history", 5);
-        grades1.put("english", 5);
-        grades1.put("science", 4);
-        kid1.setSubjectGrades(grades1);
-        List<OlympiadParticipation> olympiads1 = new ArrayList<>();
-        olympiads1.add(new OlympiadParticipation(OlympiadLevel.SCHOOL, 1));
-        kid1.setOlympiadParticipations(olympiads1);
-        schoolkids.add(kid1);
+        // SchoolStudent 1
+        SchoolStudent kid1 = new SchoolStudent("Alice", "female", 14);
+        kid1.addSubjectGrade("math", 5);
+        kid1.addSubjectGrade("russian", 5);
+        kid1.addSubjectGrade("history", 5);
+        kid1.addSubjectGrade("english", 5);
+        kid1.addSubjectGrade("science", 4);
+        kid1.addOlympiadParticipation(new OlympiadParticipation(OlympiadLevel.SCHOOL, 1));
+        schoolStudents.add(kid1);
 
-        // Add more Schoolkids with different data...
+        // SchoolStudent 2
+        SchoolStudent kid2 = new SchoolStudent("Bob", "male", 15);
+        kid2.addSubjectGrade("math", 5);
+        kid2.addSubjectGrade("russian", 5);
+        kid2.addSubjectGrade("history", 5);
+        kid2.addSubjectGrade("english", 5);
+        kid2.addSubjectGrade("science", 3);
+        kid2.addOlympiadParticipation(new OlympiadParticipation(OlympiadLevel.CITY, 2));
+        schoolStudents.add(kid2);
 
-        // Filter and print girls who got first places
-        for (Schoolkid kid : schoolkids) {
+        // SchoolStudent 3
+        SchoolStudent kid3 = new SchoolStudent("Eve", "female", 16);
+        kid3.addSubjectGrade("math", 5);
+        kid3.addSubjectGrade("russian", 5);
+        kid3.addSubjectGrade("history", 5);
+        kid3.addSubjectGrade("english", 5);
+        kid3.addSubjectGrade("science", 4);
+        kid3.addOlympiadParticipation(new OlympiadParticipation(OlympiadLevel.REGIONAL, 1));
+        schoolStudents.add(kid3);
+
+        // Выводим всех школьников
+        System.out.println("Все школьники:");
+        for (SchoolStudent student : schoolStudents) {
+            System.out.println(student.toString());
+        }
+        System.out.println("\n");
+
+        // Фильтруем девочек с первым местом
+        for (SchoolStudent kid : schoolStudents) {
             if ("female".equals(kid.getGender())) {
                 for (OlympiadParticipation participation : kid.getOlympiadParticipations()) {
                     if (participation.getPlace() == 1) {
-                        System.out.println("Girl eligible: " + kid.getName());
+                        System.out.println("Девочки с первом местом: " + kid.getName());
                         break;
                     }
                 }
             }
         }
 
-        // Task 2: Students with coursework grades
-        List<HigherEducationStudent> students = new ArrayList<>();
+        // Задача 2: Студенты с курсовыми оценками
+        List<Student> students = new ArrayList<>();
 
-        // Sample data for Students
-        HigherEducationStudent student1 = new HigherEducationStudent("Bob", "male", 20);
-        List<Integer> exams1 = new ArrayList<>();
-        exams1.add(5);
-        exams1.add(5);
-        exams1.add(4);
-        student1.setExamGrades(exams1);
-        List<Integer> coursework1 = new ArrayList<>();
-        coursework1.add(5);
-        coursework1.add(5);
-        student1.setCourseworkGrades(coursework1);
+        // Student 1
+        Student student1 = new Student("Charlie", "male", 20);
+        student1.addExamGrade(5);
+        student1.addExamGrade(5);
+        student1.addExamGrade(4);
+        student1.addCourseworkGrade(5);
         students.add(student1);
 
-        // Add more Students with different data...
+        // Student 2
+        Student student2 = new Student("Diana", "female", 22);
+        student2.addExamGrade(5);
+        student2.addExamGrade(4);
+        student2.addExamGrade(4);
+        // без курсовых будет
+        students.add(student2);
 
-        // Filter and print Students with coursework grades
-        for (HigherEducationStudent student : students) {
+        // Student 3
+        Student student3 = new Student("Frank", "male", 21);
+        student3.addExamGrade(5);
+        student3.addExamGrade(5);
+        student3.addExamGrade(5);
+        student3.addCourseworkGrade(5);
+        student3.addCourseworkGrade(5);
+        students.add(student3);
+
+        // выводим всех студентов
+        System.out.println("\nВсе студенты:");
+        for (Student student : students) {
+            System.out.println(student.toString());
+        }
+        System.out.println("\n");
+
+        // фильтруем и печатаем студентов с курсовыми оценками
+        for (Student student : students) {
             if (!student.getCourseworkGrades().isEmpty()) {
-                System.out.println("Student with coursework: " + student.getName());
+                System.out.println("Студенты с курсовыми оценками: " + student.getName());
             }
         }
 
-        // Task 3: General list of eligible students for scholarship
-        List<Student> allStudents = new ArrayList<>();
-        allStudents.addAll(schoolkids);
-        allStudents.addAll(students);
+        // Задача 3: список студентов, имеющих право на получение стипендии
+        List<Pupil> pupils = new ArrayList<>();
+        pupils.addAll(schoolStudents);
+        pupils.addAll(students);
 
-        // Filter and print eligible students
-        for (Student student : allStudents) {
-            if (student.isEligibleForScholarship()) {
-                System.out.println("Eligible for scholarship: " + student.getName());
+        // фильтрация и печать подходящих студентов
+        for (Pupil pupil : pupils) {
+            if (pupil.isEligibleForScholarship()) {
+                System.out.println("Право на стипендию: " + pupil.getName());
             }
         }
     }
