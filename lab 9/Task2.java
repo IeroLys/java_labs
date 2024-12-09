@@ -20,6 +20,6 @@ public class Task2 {
             decodedMessage.append(new StringBuilder(word).reverse().toString());
             decodedMessage.append(" ");
         }
-        System.out.println("Decoded message: " + decodedMessage.toString().trim());
+        System.out.println("Decoded message: " + decodedMessage.toString().trim()); // удаляем пробелы
     }
 }
