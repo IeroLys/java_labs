@@ -11,15 +11,7 @@ public class OlympiadParticipation {
         return level;
     }
 
-    public void setLevel(OlympiadLevel level) {
-        this.level = level;
-    }
-
     public int getPlace() {
         return place;
-    }
-
-    public void setPlace(int place) {
-        this.place = place;
     }
 }
