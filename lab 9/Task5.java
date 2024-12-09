@@ -7,12 +7,12 @@ import java.util.regex.Pattern;
 public class Task5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the text: ");
+        System.out.println("Введите текст: ");
         String text = scanner.nextLine();
         
-         // if the input is empty
+         // пустой ввод
         if (text.isEmpty()) {
-            System.out.println("You did not enter anything. Exiting the program.");
+            System.out.println("Пустой ввод.");
             return;
         }
         
@@ -22,6 +22,6 @@ public class Task5 {
         while (matcher.find()) {
             sum += Integer.parseInt(matcher.group());
         }
-        System.out.println("Sum of all integers: " + sum);
+        System.out.println("Сумма всех целых чисел: " + sum);
     }
 }
