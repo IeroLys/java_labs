@@ -4,12 +4,12 @@ import java.util.Scanner;
 public class Task3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the sentence: ");
+        System.out.println(Введите предложение: ");
         String sentence = scanner.nextLine();
         
-         // if the input is empty
+         // пустой ввод
         if (sentence.isEmpty()) {
-            System.out.println("You did not enter anything. Exiting the program.");
+            System.out.println("Пустой ввод.");
             return;
         }
         
@@ -20,6 +20,6 @@ public class Task3 {
                 count++;
             }
         }
-        System.out.println("Number of three-letter words: " + count);
+        System.out.println("Кол-во трёхбуквенных слов: " + count);
     }
 }
