@@ -6,12 +6,12 @@ public class Task1 {
     public static void main(String[] args) {
         
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a word: ");
+        System.out.println("Введите слово: ");
         String word = scanner.nextLine();
         
-         // if the input is empty
+         // пустой ввод
         if (word.isEmpty()) {
-            System.out.println("You did not enter anything. Exiting the program.");
+            System.out.println(" Пустой ввод.");
             return;
         }
         
@@ -21,6 +21,6 @@ public class Task1 {
                 result.append(c);
             }
         }
-        System.out.println("Result: " + result.toString());
+        System.out.println("Результат: " + result.toString());
     }
 }
