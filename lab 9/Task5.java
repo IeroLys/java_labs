@@ -16,11 +16,13 @@ public class Task5 {
             return;
         }
         
-        Pattern pattern = Pattern.compile("\\d+"); // создаём pattern на основе регулярки
+        // создаём шаблон для поиска
+        Pattern pattern = Pattern.compile("\\d+");
+       // создаём объект для поиска в тексте по шаблону
         Matcher matcher = pattern.matcher(text);
         int sum = 0;
-        while (matcher.find()) {
-            sum += Integer.parseInt(matcher.group());
+        while (matcher.find()) { // пока есть нужные вхождения
+            sum += Integer.parseInt(matcher.group()); // group Возвращает текст, соответствующий найденному шаблону.
         }
         System.out.println("Сумма всех целых чисел: " + sum);
     }
