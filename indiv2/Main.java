@@ -12,7 +12,7 @@ public class Main {
         // Вывод бесплатных курсов, отсортированных по длительности
         List<Course> freeCourses = new ArrayList<>();
         for (Course course : courses) {
-            if (!course.isFree()) {
+            if (course.isFree()) {
                 continue;
             }
             freeCourses.add(course);
@@ -22,8 +22,9 @@ public class Main {
         Collections.sort(freeCourses, Comparator.comparingInt(Course::getDurationMonths));
 
         System.out.println("Список бесплатных курсов, отсортированных по длительности:");
+        System.out.println(String.format("%-50s %-20s", "Название", "Длительность (месяцы)"));
         for (Course course : freeCourses) {
-            System.out.println(course);
+            System.out.println(String.format("%-50s %-20d", course.getName(), course.getDurationMonths()));
         }
 
         // Получение диапазона цен от пользователя
@@ -49,7 +50,7 @@ public class Main {
         // Фильтрация платных курсов в заданном диапазоне цен
         List<Course> paidCoursesInRange = new ArrayList<>();
         for (Course course : courses) {
-            if (course.isFree()) {
+            if (!course.isFree()) {
                 continue;
             }
             if (course.getCost() >= lowerBound && course.getCost() <= upperBound) {
@@ -96,7 +97,13 @@ public class Main {
                 String durationStr = lines.get(i + 9);
 
                 boolean isFree = Boolean.parseBoolean(freeStr);
-                double cost = Double.parseDouble(costStr);
+                double cost = 0.0;
+                try {
+                    cost = Double.parseDouble(costStr);
+                } catch (NumberFormatException e) {
+                    System.err.println("Неверный формат стоимости для курса " + name + ": " + costStr);
+                    continue;
+                }
                 int numberOfStudents = Integer.parseInt(studentsStr);
                 int numberOfReviews = Integer.parseInt(reviewsStr);
                 int numberOfLectures = Integer.parseInt(lecturesStr);
@@ -107,7 +114,7 @@ public class Main {
                 //System.out.println("Добавлен курс: " + course.getName() + " - Бесплатный: " + course.isFree() + " - Стоимость: " + course.getCost());
                 courses.add(course);
             }
-        } catch (IOException | NumberFormatException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
