@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Task2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the encoded text: ");
+        System.out.println("Введите текст: ");
         String text = scanner.nextLine();
         
-         // if the input is empty
+         // пустой ввод
         if (text.isEmpty()) {
-            System.out.println("You did not enter anything. Exiting the program.");
+            System.out.println("Пустой ввод.");
             return;
         }
         
