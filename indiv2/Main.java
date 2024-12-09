@@ -1,15 +1,15 @@
 import java.io.*;
 import java.util.*;
 
-public class Main2 {
+public class Main {
     public static void main(String[] args) {
-        List<Course> courses = readCoursesFromFile("data_course.txt");
+        List<Course> courses = readCoursesFromFile("C:/Users/Юля/IdeaProjects/indiv2/src/data_course.txt");
         if (courses == null) {
-            System.err.println("Failed to read courses from file.");
+            System.err.println("не получилось прочитать.");
             return;
         }
 
-        // Output free courses sorted by duration
+        // выводим бесплатные курсы отсортированные по длительности
         List<Course> freeCourses = new ArrayList<>();
         for (Course course : courses) {
             if (!course.isFree()) {
@@ -17,36 +17,35 @@ public class Main2 {
             }
             freeCourses.add(course);
         }
-
-        // Sort free courses by duration
+        // сортировка
         Collections.sort(freeCourses, Comparator.comparingInt(Course::getDurationMonths));
 
-        System.out.println("List of Free Courses sorted by Duration:");
+        System.out.println("Список бесплатных курсов, отсортированных по длительности:");
         for (Course course : freeCourses) {
             System.out.println(course);
         }
 
-        // Get price range from user
+        // Цена от пользователя
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the lower price bound:");
+        System.out.println("Введите нижнюю границу цены:");
         double lowerBound = 0;
         if (scanner.hasNextDouble()) {
             lowerBound = scanner.nextDouble();
         } else {
-            System.err.println("Invalid lower bound input.");
+            System.err.println("Неверный ввод нижней границы.");
             return;
         }
 
-        System.out.println("Enter the upper price bound:");
+        System.out.println("Введите верхнюю границу цены:");
         double upperBound = 0;
         if (scanner.hasNextDouble()) {
             upperBound = scanner.nextDouble();
         } else {
-            System.err.println("Invalid upper bound input.");
+            System.err.println("Неверный ввод верхней границы.");
             return;
         }
 
-        // Filter paid courses within price range
+        // фильтруем платные курсы по заданному диапазону цен
         List<Course> paidCoursesInRange = new ArrayList<>();
         for (Course course : courses) {
             if (course.isFree()) {
@@ -57,29 +56,46 @@ public class Main2 {
             }
         }
 
-        // Sort paid courses by name
+        // Сортируем платные курсы по имени
         Collections.sort(paidCoursesInRange, Comparator.comparing(Course::getName));
 
-        // Output paid courses to file
-        writePaidCoursesToFile(paidCoursesInRange, "paid_courses.txt");
+        // Проверка на наличие платных курсов в заданном диапазоне
+        if (paidCoursesInRange.isEmpty()) {
+            System.out.println("В заданном диапазоне не найдено платных курсов.");
+        } else {
+            // Сортировка платных курсов по названию
+            Collections.sort(paidCoursesInRange, Comparator.comparing(Course::getName));
+
+            // Вывод платных курсов в файл
+            writePaidCoursesToFile(paidCoursesInRange, "paid_courses.txt");
+        }
     }
 
     private static List<Course> readCoursesFromFile(String filename) {
         List<Course> courses = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Read 10 lines for each course
-                String id = line;
-                String name = br.readLine();
-                String url = br.readLine();
-                String freeStr = br.readLine();
-                String costStr = br.readLine();
-                String studentsStr = br.readLine();
-                String reviewsStr = br.readLine();
-                String lecturesStr = br.readLine();
-                String difficulty = br.readLine();
-                String durationStr = br.readLine();
+                if (!line.trim().isEmpty()) {
+                    lines.add(line.trim());
+                }
+            }
+            for (int i = 0; i < lines.size(); i += 10) {
+                if (i + 9 >= lines.size()) {
+                    System.err.println("Incomplete data for course at line " + i);
+                    continue;
+                }
+                String id = lines.get(i);
+                String name = lines.get(i + 1);
+                String url = lines.get(i + 2);
+                String freeStr = lines.get(i + 3);
+                String costStr = lines.get(i + 4);
+                String studentsStr = lines.get(i + 5);
+                String reviewsStr = lines.get(i + 6);
+                String lecturesStr = lines.get(i + 7);
+                String difficulty = lines.get(i + 8);
+                String durationStr = lines.get(i + 9);
 
                 boolean isFree = Boolean.parseBoolean(freeStr);
                 double cost = Double.parseDouble(costStr);
