@@ -15,7 +15,7 @@ public class Task1 {
             return;
         }
         
-        StringBuilder result = new StringBuilder();
+        StringBuilder result = new StringBuilder(); // изменяемая строка
         for (char c : word.toCharArray()) { // массив символов
             if (!Character.isUpperCase(c)) {
                 result.append(c);
