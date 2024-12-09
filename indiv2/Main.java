@@ -5,11 +5,11 @@ public class Main {
     public static void main(String[] args) {
         List<Course> courses = readCoursesFromFile("C:/Users/Юля/IdeaProjects/indiv2/src/data_course.txt");
         if (courses == null) {
-            System.err.println("не получилось прочитать.");
+            System.err.println("Не удалось прочитать курсы из файла.");
             return;
         }
 
-        // выводим бесплатные курсы отсортированные по длительности
+        // Вывод бесплатных курсов, отсортированных по длительности
         List<Course> freeCourses = new ArrayList<>();
         for (Course course : courses) {
             if (!course.isFree()) {
@@ -17,7 +17,8 @@ public class Main {
             }
             freeCourses.add(course);
         }
-        // сортировка
+
+        // Сортировка бесплатных курсов по длительности
         Collections.sort(freeCourses, Comparator.comparingInt(Course::getDurationMonths));
 
         System.out.println("Список бесплатных курсов, отсортированных по длительности:");
@@ -25,7 +26,7 @@ public class Main {
             System.out.println(course);
         }
 
-        // Цена от пользователя
+        // Получение диапазона цен от пользователя
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите нижнюю границу цены:");
         double lowerBound = 0;
@@ -45,7 +46,7 @@ public class Main {
             return;
         }
 
-        // фильтруем платные курсы по заданному диапазону цен
+        // Фильтрация платных курсов в заданном диапазоне цен
         List<Course> paidCoursesInRange = new ArrayList<>();
         for (Course course : courses) {
             if (course.isFree()) {
@@ -55,9 +56,6 @@ public class Main {
                 paidCoursesInRange.add(course);
             }
         }
-
-        // Сортируем платные курсы по имени
-        Collections.sort(paidCoursesInRange, Comparator.comparing(Course::getName));
 
         // Проверка на наличие платных курсов в заданном диапазоне
         if (paidCoursesInRange.isEmpty()) {
@@ -83,7 +81,7 @@ public class Main {
             }
             for (int i = 0; i < lines.size(); i += 10) {
                 if (i + 9 >= lines.size()) {
-                    System.err.println("Incomplete data for course at line " + i);
+                    System.err.println("Неполные данные для курса в строке " + i);
                     continue;
                 }
                 String id = lines.get(i);
@@ -106,6 +104,7 @@ public class Main {
 
                 Course course = new Course(id, name, url, isFree, cost, numberOfStudents,
                         numberOfReviews, numberOfLectures, difficulty, durationMonths);
+                //System.out.println("Добавлен курс: " + course.getName() + " - Бесплатный: " + course.isFree() + " - Стоимость: " + course.getCost());
                 courses.add(course);
             }
         } catch (IOException | NumberFormatException e) {
@@ -117,10 +116,10 @@ public class Main {
 
     private static void writePaidCoursesToFile(List<Course> paidCourses, String filename) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
-            // Write table headers
-            bw.write(String.format("%-50s %-50s %-20s %-10s", "Name", "URL", "Number of Lectures", "Cost"));
+            // Запись заголовков таблицы
+            bw.write(String.format("%-50s %-50s %-20s %-10s", "Название", "URL", "Количество лекций", "Стоимость"));
             bw.newLine();
-            // Write courses data
+            // Запись данных курсов
             for (Course course : paidCourses) {
                 bw.write(String.format("%-50s %-50s %-20d %-10.2f", course.getName(), course.getUrl(),
                         course.getNumberOfLectures(), course.getCost()));
