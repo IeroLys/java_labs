@@ -97,7 +97,7 @@ public class Main {
             }
         }
 
-        // Задача 3: список студентов, имеющих право на получение стипендии
+        // Задача 3: общий список студентов и школьников, имеющих право на получение стипендии
         List<Pupil> pupils = new ArrayList<>();
         pupils.addAll(schoolStudents);
         pupils.addAll(students);
