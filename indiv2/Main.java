@@ -72,8 +72,16 @@ public class Main {
     }
 
     private static List<Course> readCoursesFromFile(String filename) {
+// храним курсы
         List<Course> courses = new ArrayList<>();
+// читаеи построчно
+/*
+FileInputStream: Открывает файл для чтения.
+
+InputStreamReader: Преобразует байтовый поток в символьный с указанием кодировки (UTF-8).
+*/
         List<String> lines = new ArrayList<>();
+// читаем построчно
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
             String line;
             while ((line = br.readLine()) != null) {
