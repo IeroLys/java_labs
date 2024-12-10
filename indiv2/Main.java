@@ -122,6 +122,7 @@ InputStreamReader: Преобразует байтовый поток в сим�
                 int numberOfLectures = Integer.parseInt(lecturesStr);
                 int durationMonths = Integer.parseInt(durationStr);
 
+// создаём курс и добавляем его в список
                 Course course = new Course(id, name, url, isFree, cost, numberOfStudents,
                         numberOfReviews, numberOfLectures, difficulty, durationMonths);
                 //System.out.println("Добавлен курс: " + course.getName() + " - Бесплатный: " + course.isFree() + " - Стоимость: " + course.getCost());
