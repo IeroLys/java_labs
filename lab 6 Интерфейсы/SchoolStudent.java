@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SchoolStudent extends Pupil {
+public class SchoolStudent extends Pupil implements PerformanceComparable {
     private HashMap<String, Integer> subjectGrades;
     private List<OlympiadParticipation> olympiadParticipations;
     private int schoolNumber;
@@ -34,44 +34,24 @@ public class SchoolStudent extends Pupil {
 
     @Override
     public boolean isEligibleForScholarship() {
-        String[] requiredSubjects = {"math", "russian", "history", "english"};
-        for (String subject : requiredSubjects) {
-            if (!subjectGrades.containsKey(subject) || subjectGrades.get(subject) != 5) {
-                return false;
-            }
-        }
-        for (int grade : subjectGrades.values()) {
-            if (grade < 4) {
-                return false;
-            }
-        }
-        for (OlympiadParticipation participation : olympiadParticipations) {
-            if (participation.getLevel() == OlympiadLevel.REGIONAL) {
-                return true;
-            } else if (participation.getLevel() == OlympiadLevel.SCHOOL && participation.getPlace() == 1) {
-                return true;
-            } else if (participation.getLevel() == OlympiadLevel.CITY && participation.getPlace() <= 3) {
-                return true;
-            }
-        }
+        // Implement specific criteria for scholarship eligibility
         return false;
     }
 
     @Override
-    public String toString() {
-        return "SchoolStudent{" +
-                "name='" + getName() + '\'' +
-                ", surname='" + getSurname() + '\'' +
-                ", gender='" + getGender() + '\'' +
-                ", age=" + getAge() +
-                ", schoolNumber=" + schoolNumber +
-                ", subjectGrades=" + subjectGrades +
-                ", olympiadParticipations=" + olympiadParticipations +
-                '}';
+    public double getAcademicPerformanceRating() {
+        if (subjectGrades.isEmpty()) {
+            return 0.0;
+        }
+        return subjectGrades.values().stream().mapToInt(Integer::intValue).average().orElse(0.0);
     }
 
     @Override
-    public double getAcademicPerformanceRating() {
-        return subjectGrades.values().stream().mapToInt(Integer::intValue).average().orElse(0.0);
+    public String toString() {
+        return super.toString() + ", SchoolStudent{" +
+                "schoolNumber=" + schoolNumber +
+                ", subjectGrades=" + subjectGrades +
+                ", olympiadParticipations=" + olympiadParticipations +
+                '}';
     }
 }
