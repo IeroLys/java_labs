@@ -57,7 +57,7 @@ public class Course {
     }
 
 // чтоб красиво вывести
-    @Override
+    @Override // переопределяем унаследованный метод
     public String toString() {
         return "Course{" +
                 "id='" + id + '\'' +
