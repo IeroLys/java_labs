@@ -1,23 +1,12 @@
-import java.util.Comparator;
+// класс Учащийся по заданию
 
-public abstract class Pupil implements Comparable<Pupil> {
-    private String name;
-    private String surname;
-    private String gender;
-    private int age;
+public abstract class Pupil {
+    private String name; // имя
+    private String gender; // пол
+    private int age; // возраст
 
-    public Pupil(String name, String surname, String gender, int age) throws InvalidDataException {
-        if (!Character.isUpperCase(name.charAt(0)) || !name.matches("[A-Za-z]+")) {
-            throw new InvalidDataException("Name must start with an uppercase letter and contain only letters.");
-        }
-        if (!surname.matches("[A-Za-z]+")) {
-            throw new InvalidDataException("Surname must contain only letters.");
-        }
-        if (age <= 0) {
-            throw new InvalidDataException("Age must be positive.");
-        }
+    public Pupil(String name, String gender, int age) {
         this.name = name;
-        this.surname = surname;
         this.gender = gender;
         this.age = age;
     }
@@ -26,32 +15,27 @@ public abstract class Pupil implements Comparable<Pupil> {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getGender() {
         return gender;
     }
 
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public int getAge() {
         return age;
     }
 
-    @Override
-    public int compareTo(Pupil other) {
-        return this.surname.compareTo(other.getSurname());
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public abstract boolean isEligibleForScholarship();
 
-    @Override
-    public String toString() {
-        return "Pupil{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age=" + age +
-                '}';
-    }
+    public abstract String toString();
 }
