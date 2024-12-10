@@ -1,4 +1,4 @@
-import java.io.*;
+import java.io.*; // работа с файлами
 import java.util.*;
 
 public class Main {
