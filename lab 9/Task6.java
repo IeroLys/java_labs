@@ -9,7 +9,7 @@ public class Task6 {
         Scanner scanner = new Scanner(System.in);
         
         // Read the input text
-        System.out.println("Enter the text (press Enter on a blank line to finish):");
+        System.out.println("Введите текст (нажмите Enter на пустой строке по завершению):");
         StringBuilder textBuilder = new StringBuilder();
         String line;
         boolean hasInput = false;
@@ -24,19 +24,19 @@ public class Task6 {
         
         // if the input is empty
         if (!hasInput) {
-            System.out.println("You did not enter anything. Exiting the program.");
+            System.out.println("Пустой ввод.");
             return;
         }
         
         String text = textBuilder.toString().trim(); // удаляет начальные и конечные пробелы
         
         // Read the keyword
-        System.out.println("Enter the keyword:");
+        System.out.println("Введите слово:");
         String keyword = scanner.nextLine();
         
-        // if the keyword is empty
+        // пустой ввод
         if (keyword.isEmpty()) {
-            System.out.println("You did not enter a keyword. Exiting the program.");
+            System.out.println("Пустой ввод.");
             return;
         }
         
