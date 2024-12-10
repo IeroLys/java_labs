@@ -84,11 +84,13 @@ InputStreamReader: Преобразует байтовый поток в сим�
 // читаем построчно
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
             String line;
+// пока не конец файла
             while ((line = br.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
                     lines.add(line.trim());
                 }
             }
+// проверка данных
             for (int i = 0; i < lines.size(); i += 10) {
                 if (i + 9 >= lines.size()) {
                     System.err.println("Неполные данные для курса в строке " + i);
