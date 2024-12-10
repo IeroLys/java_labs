@@ -10,6 +10,7 @@ public class Course {
     private String difficulty;
     private int durationMonths;
 
+// конструктор
     public Course(String id, String name, String url, boolean isFree, double cost,
                   int numberOfStudents, int numberOfReviews, int numberOfLectures,
                   String difficulty, int durationMonths) {
@@ -25,7 +26,7 @@ public class Course {
         this.durationMonths = durationMonths;
     }
 
-    // Getters and setters omitted for brevity
+    // Геттеры для получения данных
 
     public String getId() {
         return id;
@@ -55,6 +56,7 @@ public class Course {
         return durationMonths;
     }
 
+// чтоб красиво вывести
     @Override
     public String toString() {
         return "Course{" +
