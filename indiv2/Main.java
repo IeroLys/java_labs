@@ -96,6 +96,7 @@ InputStreamReader: Преобразует байтовый поток в сим�
                     System.err.println("Неполные данные для курса в строке " + i);
                     continue;
                 }
+// извлекаем данные
                 String id = lines.get(i);
                 String name = lines.get(i + 1);
                 String url = lines.get(i + 2);
@@ -107,6 +108,7 @@ InputStreamReader: Преобразует байтовый поток в сим�
                 String difficulty = lines.get(i + 8);
                 String durationStr = lines.get(i + 9);
 
+// преобразовываем строки
                 boolean isFree = Boolean.parseBoolean(freeStr);
                 double cost = 0.0;
                 try {
