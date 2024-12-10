@@ -47,6 +47,7 @@ public class Task6 {
         Pattern pattern = Pattern.compile("\\b" + Pattern.quote(keyword) + "\\b"); // чтоб символы нормально воспринимались
         
         // Collect and print matching sentences
+// ищем совпадения
         for (String sentence : sentences) {
             Matcher matcher = pattern.matcher(sentence);
             if (matcher.find()) {
