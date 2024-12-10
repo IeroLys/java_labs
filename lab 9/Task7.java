@@ -34,6 +34,7 @@ public class Task7 {
         }
         
         // Удаляем последний пробел
+// если строка непустая, и посл.символ пробел
         if (transformedText.length() > 0 && transformedText.charAt(transformedText.length() - 1) == ' ') {
             transformedText.setLength(transformedText.length() - 1);
         }
