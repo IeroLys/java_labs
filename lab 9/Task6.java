@@ -44,7 +44,7 @@ public class Task6 {
         String[] sentences = text.split("[.!?]\\s*");
         
         // Compile the regex pattern for the keyword
-        Pattern pattern = Pattern.compile("\\b" + Pattern.quote(keyword) + "\\b");
+        Pattern pattern = Pattern.compile("\\b" + Pattern.quote(keyword) + "\\b"); // чтоб символы нормально воспринимались
         
         // Collect and print matching sentences
         for (String sentence : sentences) {
