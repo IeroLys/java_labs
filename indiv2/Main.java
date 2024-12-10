@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+// читаем файл, создаём список курсов
         List<Course> courses = readCoursesFromFile("C:/Users/Юля/IdeaProjects/indiv2/src/data_course.txt");
         if (courses == null) {
             System.err.println("Не удалось прочитать курсы из файла.");
