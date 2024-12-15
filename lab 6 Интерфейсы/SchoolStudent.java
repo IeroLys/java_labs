@@ -34,7 +34,26 @@ public class SchoolStudent extends Pupil implements PerformanceComparable {
 
     @Override
     public boolean isEligibleForScholarship() {
-        // Implement specific criteria for scholarship eligibility
+        String[] requiredSubjects = {"math", "russian", "history", "english"};
+        for (String subject : requiredSubjects) {
+            if (!subjectGrades.containsKey(subject) || subjectGrades.get(subject) != 5) {
+                return false;
+            }
+        }
+        for (int grade : subjectGrades.values()) {
+            if (grade < 4) {
+                return false;
+            }
+        }
+        for (OlympiadParticipation participation : olympiadParticipations) {
+            if (participation.getLevel() == OlympiadLevel.REGIONAL) {
+                return true;
+            } else if (participation.getLevel() == OlympiadLevel.SCHOOL && participation.getPlace() == 1) {
+                return true;
+            } else if (participation.getLevel() == OlympiadLevel.CITY && participation.getPlace() <= 3) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -48,10 +67,9 @@ public class SchoolStudent extends Pupil implements PerformanceComparable {
 
     @Override
     public String toString() {
-        return super.toString() + ", SchoolStudent{" +
-                "schoolNumber=" + schoolNumber +
-                ", subjectGrades=" + subjectGrades +
-                ", olympiadParticipations=" + olympiadParticipations +
-                '}';
+        return super.toString() +
+                "\nSchool Number: " + schoolNumber +
+                "\nSubject Grades: " + subjectGrades +
+                "\nOlympiad Participations: " + olympiadParticipations;
     }
 }

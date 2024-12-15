@@ -21,7 +21,7 @@ public class Main {
             }
 
             SchoolStudent ss2 = new SchoolStudent("Bob", "Johnson", "male", 15, 2);
-            ss2.addSubjectGrade("math", 4);
+            ss2.addSubjectGrade("math", 5);
             ss2.addSubjectGrade("russian", 5);
             ss2.addOlympiadParticipation(new OlympiadParticipation(OlympiadLevel.CITY, 2));
             if (ss2.isEligibleForScholarship()) {
@@ -40,8 +40,9 @@ public class Main {
             }
 
             Student st2 = new Student("Diana", "Green", "female", 22);
-            st2.addExamGrade(4);
             st2.addExamGrade(5);
+            st2.addExamGrade(5);
+            st2.addCourseworkGrade(5);
             if (st2.isEligibleForScholarship()) {
                 pupils.add(st2);
                 students.add(st2);
@@ -54,8 +55,13 @@ public class Main {
         // Task 1: Sort and print pupils by surname
         Collections.sort(pupils);
         System.out.println("Eligible pupils sorted by surname:");
-        for (Pupil pupil : pupils) {
-            System.out.println(pupil.toString());
+        if (!pupils.isEmpty()) {
+            for (Pupil pupil : pupils) {
+                System.out.println(pupil.toString());
+                System.out.println(); // Empty line for separation
+            }
+        } else {
+            System.out.println("No eligible pupils found.");
         }
 
         // Task 2: Find the best-performing student and school student
@@ -74,8 +80,19 @@ public class Main {
             }
         }
 
-        System.out.println("Best-performing Student: " + (bestStudent != null ? bestStudent.toString() : "None"));
-        System.out.println("Best-performing SchoolStudent: " + (bestSchoolStudent != null ? bestSchoolStudent.toString() : "None"));
+        System.out.println("Best-performing Student:");
+        if (bestStudent != null) {
+            System.out.println(bestStudent.toString());
+        } else {
+            System.out.println("None");
+        }
+
+        System.out.println("\nBest-performing SchoolStudent:");
+        if (bestSchoolStudent != null) {
+            System.out.println(bestSchoolStudent.toString());
+        } else {
+            System.out.println("None");
+        }
 
         // Task 3: Sort school students by academic performance and school number
         Collections.sort(schoolStudents, new Comparator<SchoolStudent>() {
@@ -89,9 +106,14 @@ public class Main {
             }
         });
 
-        System.out.println("School students sorted by performance and school number:");
-        for (SchoolStudent ss : schoolStudents) {
-            System.out.println(ss.toString());
+        System.out.println("\nSchool students sorted by performance and school number:");
+        if (!schoolStudents.isEmpty()) {
+            for (SchoolStudent ss : schoolStudents) {
+                System.out.println(ss.toString());
+                System.out.println(); // Empty line for separation
+            }
+        } else {
+            System.out.println("No school students found.");
         }
 
         // Task 4: Sort students by academic performance
@@ -102,9 +124,14 @@ public class Main {
             }
         });
 
-        System.out.println("Students sorted by performance:");
-        for (Student st : students) {
-            System.out.println(st.toString());
+        System.out.println("\nStudents sorted by performance:");
+        if (!students.isEmpty()) {
+            for (Student st : students) {
+                System.out.println(st.toString());
+                System.out.println(); // Empty line for separation
+            }
+        } else {
+            System.out.println("No students found.");
         }
     }
 }

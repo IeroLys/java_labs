@@ -27,8 +27,16 @@ public class Student extends Pupil implements PerformanceComparable {
 
     @Override
     public boolean isEligibleForScholarship() {
-        // Implement specific criteria for scholarship eligibility
-        return false;
+        double averageExamScore = examGrades.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+        if (averageExamScore < 4.75) {
+            return false;
+        }
+        for (int grade : courseworkGrades) {
+            if (grade != 5) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -43,9 +51,8 @@ public class Student extends Pupil implements PerformanceComparable {
 
     @Override
     public String toString() {
-        return super.toString() + ", Student{" +
-                "examGrades=" + examGrades +
-                ", courseworkGrades=" + courseworkGrades +
-                '}';
+        return super.toString() +
+                "\nExam Grades: " + examGrades +
+                "\nCoursework Grades: " + courseworkGrades;
     }
 }
