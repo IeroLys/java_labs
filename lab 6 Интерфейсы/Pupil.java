@@ -43,8 +43,6 @@ public abstract class Pupil implements Comparable<Pupil> {
 
     public abstract boolean isEligibleForScholarship();
 
-    //public abstract String toString();
-
     public abstract double getAcademicPerformanceRating();
 
     @Override

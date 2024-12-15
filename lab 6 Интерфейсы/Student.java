@@ -25,6 +25,14 @@ public class Student extends Pupil implements PerformanceComparable {
         courseworkGrades.add(grade);
     }
 
+    public List<Integer> getExamGrades() {
+        return examGrades;
+    }
+
+    public List<Integer> getCourseworkGrades() {
+        return courseworkGrades;
+    }
+
     @Override
     public boolean isEligibleForScholarship() {
         double averageExamScore = examGrades.stream().mapToInt(Integer::intValue).average().orElse(0.0);
@@ -51,8 +59,7 @@ public class Student extends Pupil implements PerformanceComparable {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "\nExam Grades: " + examGrades +
-                "\nCoursework Grades: " + courseworkGrades;
+        return String.format("Name: %s\nSurname: %s\nGender: %s\nAge: %d\nExam Grades: %s\nCoursework Grades: %s",
+                getName(), getSurname(), getGender(), getAge(), examGrades, courseworkGrades);
     }
 }

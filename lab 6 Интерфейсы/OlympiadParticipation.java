@@ -14,4 +14,10 @@ public class OlympiadParticipation {
     public int getPlace() {
         return place;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s, Place: %d", level, place);
+    }
+
 }

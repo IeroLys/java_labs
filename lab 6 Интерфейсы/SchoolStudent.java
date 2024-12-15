@@ -32,6 +32,14 @@ public class SchoolStudent extends Pupil implements PerformanceComparable {
         return schoolNumber;
     }
 
+    public HashMap<String, Integer> getSubjectGrades() {
+        return subjectGrades;
+    }
+
+    public List<OlympiadParticipation> getOlympiadParticipations() {
+        return olympiadParticipations;
+    }
+
     @Override
     public boolean isEligibleForScholarship() {
         String[] requiredSubjects = {"math", "russian", "history", "english"};
@@ -67,9 +75,7 @@ public class SchoolStudent extends Pupil implements PerformanceComparable {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "\nSchool Number: " + schoolNumber +
-                "\nSubject Grades: " + subjectGrades +
-                "\nOlympiad Participations: " + olympiadParticipations;
+        return String.format("Name: %s\nSurname: %s\nGender: %s\nAge: %d\nSchool Number: %d\nSubject Grades: %s\nOlympiad Participations: %s",
+                getName(), getSurname(), getGender(), getAge(), getSchoolNumber(), subjectGrades, olympiadParticipations);
     }
 }

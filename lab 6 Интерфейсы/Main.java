@@ -31,11 +31,11 @@ public class Main {
             }
 
             SchoolStudent ss3 = new SchoolStudent("Mika", "Ssmith", "female", 14, 1);
-            ss1.addSubjectGrade("math", 4);
-            ss1.addSubjectGrade("russian", 4);
-            ss1.addSubjectGrade("history", 5);
-            ss1.addSubjectGrade("english", 5);
-            ss1.addOlympiadParticipation(new OlympiadParticipation(OlympiadLevel.SCHOOL, 3));
+            ss3.addSubjectGrade("math", 4);
+            ss3.addSubjectGrade("russian", 4);
+            ss3.addSubjectGrade("history", 5);
+            ss3.addSubjectGrade("english", 5);
+            ss3.addOlympiadParticipation(new OlympiadParticipation(OlympiadLevel.SCHOOL, 3));
             if (ss3.isEligibleForScholarship()) {
                 pupils.add(ss3);
                 schoolStudents.add(ss3);
@@ -74,42 +74,52 @@ public class Main {
         System.out.println();
 
         // Task 2: Find the best-performing student and school student
-        PerformanceComparable bestStudent = null;
-        PerformanceComparable bestSchoolStudent = null;
+        Student bestStudent = null;
+        SchoolStudent bestSchoolStudent = null;
 
         for (Pupil pupil : pupils) {
             if (pupil instanceof Student) {
-                if (bestStudent == null || ((Student) pupil).getAcademicPerformanceRating() > bestStudent.getAcademicPerformanceRating()) {
-                    bestStudent = (Student) pupil;
+                Student currentStudent = (Student) pupil;
+                if (bestStudent == null || currentStudent.getAcademicPerformanceRating() > bestStudent.getAcademicPerformanceRating()) {
+                    bestStudent = currentStudent;
                 }
             } else if (pupil instanceof SchoolStudent) {
-                if (bestSchoolStudent == null || ((SchoolStudent) pupil).getAcademicPerformanceRating() > bestSchoolStudent.getAcademicPerformanceRating()) {
-                    bestSchoolStudent = (SchoolStudent) pupil;
+                SchoolStudent currentSchoolStudent = (SchoolStudent) pupil;
+                if (bestSchoolStudent == null || currentSchoolStudent.getAcademicPerformanceRating() > bestSchoolStudent.getAcademicPerformanceRating()) {
+                    bestSchoolStudent = currentSchoolStudent;
                 }
             }
         }
 
         System.out.println("Best-performing Student:");
         if (bestStudent != null) {
-            System.out.println(bestStudent.toString());
+            System.out.println(String.format("%-20s %-20s %-10s %-5s %-20s %-20s", "Name", "Surname", "Gender", "Age", "Exam Grades", "Coursework Grades"));
+            System.out.println(String.format("%-20s %-20s %-10s %-5d %-20s %-20s",
+                    bestStudent.getName(), bestStudent.getSurname(), bestStudent.getGender(), bestStudent.getAge(),
+                    ((Student) bestStudent).getExamGrades().toString(), ((Student) bestStudent).getCourseworkGrades().toString()));
         } else {
             System.out.println("None");
         }
 
         System.out.println("\nBest-performing SchoolStudent:");
         if (bestSchoolStudent != null) {
-            System.out.println(bestSchoolStudent.toString());
+            System.out.println(String.format("%-20s %-20s %-10s %-5s %-15s %-20s %-20s", "Name", "Surname", "Gender", "Age", "School Number", "Subject Grades", "Olympiad Participations"));
+            System.out.println(String.format("%-20s %-20s %-10s %-5d %-15d %-20s %-20s",
+                    bestSchoolStudent.getName(), bestSchoolStudent.getSurname(), bestSchoolStudent.getGender(), bestSchoolStudent.getAge(),
+                    ((SchoolStudent) bestSchoolStudent).getSchoolNumber(), ((SchoolStudent) bestSchoolStudent).getSubjectGrades().toString(),
+                    ((SchoolStudent) bestSchoolStudent).getOlympiadParticipations().toString()));
         } else {
             System.out.println("None");
         }
         System.out.println();
 
         // Task 3: Sort school students by academic performance and school number
-        // First, sort by academic performance in descending order
-        Collections.sort(schoolStudents, Comparator.comparingDouble(SchoolStudent::getAcademicPerformanceRating).reversed());
+        // Use a compound comparator
+        Comparator<SchoolStudent> comparator =
+                Comparator.comparingDouble(SchoolStudent::getAcademicPerformanceRating).reversed()
+                        .thenComparingInt(SchoolStudent::getSchoolNumber);
 
-        // Then, sort by school number in ascending order
-        Collections.sort(schoolStudents, Comparator.comparingInt(SchoolStudent::getSchoolNumber));
+        schoolStudents.sort(comparator);
 
         System.out.println("School students sorted by performance and school number:");
         System.out.println(String.format("%-20s %-20s %-10s %-5s %-10s %-15s", "Name", "Surname", "Gender", "Age", "School Number", "Performance"));
@@ -119,12 +129,7 @@ public class Main {
         System.out.println();
 
         // Task 4: Sort students by academic performance
-        Collections.sort(students, new Comparator<Student>() {
-            @Override
-            public int compare(Student s1, Student s2) {
-                return Double.compare(s2.getAcademicPerformanceRating(), s1.getAcademicPerformanceRating());
-            }
-        });
+        students.sort(Comparator.comparingDouble(Student::getAcademicPerformanceRating).reversed());
 
         System.out.println("Students sorted by performance:");
         System.out.println(String.format("%-20s %-20s %-10s %-5s %-15s", "Name", "Surname", "Gender", "Age", "Performance"));
