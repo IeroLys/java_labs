@@ -8,7 +8,9 @@ public class IntegerOperations {
 
     public IntegerOperations() {
         intList = new ArrayList<>();
-        System.out.println("Введите целые числа. Для окончания ввода нажмите Enter.");
+       
+// ввод
+ System.out.println("Введите целые числа. Для окончания ввода нажмите Enter.");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             String line;
             while ((line = reader.readLine()) != null && !line.isEmpty()) {
@@ -30,6 +32,7 @@ public class IntegerOperations {
         }
     }
 
+// поиск максимального
     public void findMaxValue() {
         int maxValue = intList.get(0);
         for (int num : intList) {
@@ -40,6 +43,7 @@ public class IntegerOperations {
         System.out.println("Максимальное значение: " + maxValue);
     }
 
+// индекс последнего максимального
     public void findLastMaxIndex() {
         int maxValue = intList.get(0);
         int lastIndex = 0;
@@ -52,16 +56,19 @@ public class IntegerOperations {
         System.out.println("Индекс последнего максимального элемента: " + lastIndex);
     }
 
+// сортировка
     public void sortAscending() {
         intList.sort(Integer::compareTo);
         System.out.println("Список, отсортированный по возрастанию: " + intList);
     }
 
+// убираем отрицательные числа
     public void removeNegatives() {
         intList.removeIf(n -> n < 0);
         System.out.println("Список после удаления отрицательных чисел: " + intList);
     }
 
+// вызываем методы
     public static void main(String[] args) {
         IntegerOperations io = new IntegerOperations();
         if (!io.intList.isEmpty()) {
