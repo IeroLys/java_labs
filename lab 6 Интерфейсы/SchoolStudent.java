@@ -8,7 +8,10 @@ public class SchoolStudent extends Pupil implements PerformanceComparable { // �
     private List<OlympiadParticipation> olympiadParticipations;
     private int schoolNumber;
 
+// конструктор
     public SchoolStudent(String name, String surname, String gender, int age, int schoolNumber) throws InvalidDataException {
+// вызываем конструктор суперкласса и передаём ему значения
+// школьник - учащийся
         super(name, surname, gender, age);
         this.subjectGrades = new HashMap<>();
         this.olympiadParticipations = new ArrayList<>();
