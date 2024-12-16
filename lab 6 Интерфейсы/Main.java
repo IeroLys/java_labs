@@ -80,11 +80,13 @@ public class Main {
         SchoolStudent bestSchoolStudent = null;
 
         for (Pupil pupil : pupils) {
+// если учащийся это студент
             if (pupil instanceof Student) {
                 Student currentStudent = (Student) pupil;
                 if (bestStudent == null || currentStudent.getAcademicPerformanceRating() > bestStudent.getAcademicPerformanceRating()) {
                     bestStudent = currentStudent;
                 }
+// если это школьник
             } else if (pupil instanceof SchoolStudent) {
                 SchoolStudent currentSchoolStudent = (SchoolStudent) pupil;
                 if (bestSchoolStudent == null || currentSchoolStudent.getAcademicPerformanceRating() > bestSchoolStudent.getAcademicPerformanceRating()) {
@@ -93,6 +95,7 @@ public class Main {
             }
         }
 
+// выводы
         System.out.println("Best-performing Student:");
         if (bestStudent != null) {
             System.out.println(String.format("%-20s %-20s %-10s %-5s %-20s %-20s", "Name", "Surname", "Gender", "Age", "Exam Grades", "Coursework Grades"));
