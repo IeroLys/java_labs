@@ -1,3 +1,4 @@
+// перечисление
 public enum OlympiadLevel {
     SCHOOL,
     CITY,
