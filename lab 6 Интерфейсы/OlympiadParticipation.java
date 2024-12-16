@@ -15,6 +15,7 @@ public class OlympiadParticipation {
         return place;
     }
 
+// для красивого вывода, переопределение
     @Override
     public String toString() {
         return String.format("%s, Place: %d", level, place);
