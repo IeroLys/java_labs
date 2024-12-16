@@ -65,7 +65,9 @@ public class Main {
         }
 
         // Task 1: Sort and print pupils by surname
+// sorting
         Collections.sort(pupils);
+// outputs
         System.out.println("Eligible pupils sorted by surname:");
         System.out.println(String.format("%-20s %-20s %-10s %-5s", "Name", "Surname", "Gender", "Age"));
         for (Pupil pupil : pupils) {
