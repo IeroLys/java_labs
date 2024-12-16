@@ -2,7 +2,8 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SchoolStudent extends Pupil implements PerformanceComparable {
+
+public class SchoolStudent extends Pupil implements PerformanceComparable { // реализовываем интерфейс
     private HashMap<String, Integer> subjectGrades;
     private List<OlympiadParticipation> olympiadParticipations;
     private int schoolNumber;
