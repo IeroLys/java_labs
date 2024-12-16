@@ -8,7 +8,10 @@ public class DoubleOperations {
 
     public DoubleOperations() {
         doubleList = new LinkedList<>();
-        System.out.println("Введите действительные числа. Для окончания ввода нажмите Enter.");
+        
+// ввод и проверки
+
+System.out.println("Введите действительные числа. Для окончания ввода нажмите Enter.");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             String line;
             while ((line = reader.readLine()) != null && !line.isEmpty()) {
@@ -30,11 +33,14 @@ public class DoubleOperations {
         }
     }
 
+// выполняем задания
+// сортируем по убыванию
     public void sortDescending() {
         doubleList.sort((a, b) -> Double.compare(b, a));
         System.out.println("Список, отсортированный по убыванию: " + doubleList);
     }
 
+// содержит ли 0
     public void checkForZeros() {
         boolean hasZeros = doubleList.contains(0.0);
         System.out.println("Содержит нулевые элементы: " + hasZeros);
@@ -52,6 +58,7 @@ public class DoubleOperations {
     public static void main(String[] args) {
         DoubleOperations dobj = new DoubleOperations();
         if (!dobj.doubleList.isEmpty()) {
+// вызываем функции
             dobj.sortDescending();
             dobj.checkForZeros();
             dobj.addAverageToMiddle();
