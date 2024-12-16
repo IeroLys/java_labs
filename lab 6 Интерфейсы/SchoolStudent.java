@@ -86,9 +86,9 @@ public class SchoolStudent extends Pupil implements PerformanceComparable { // �
 // получаем оценки, создаём поток значений, преобразуем в int, считаем среднее
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return String.format("Name: %s\nSurname: %s\nGender: %s\nAge: %d\nSchool Number: %d\nSubject Grades: %s\nOlympiad Participations: %s",
                 getName(), getSurname(), getGender(), getAge(), getSchoolNumber(), subjectGrades, olympiadParticipations);
-    }
+    }*/
 }
