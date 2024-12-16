@@ -36,7 +36,6 @@ public abstract class Pupil implements Comparable<Pupil> {
         return age;
     }
 
-// для сортировки по фамилиям в 1 задании
     @Override
     public int compareTo(Pupil other) {
         return this.surname.compareTo(other.getSurname());
