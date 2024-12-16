@@ -46,11 +46,11 @@ public abstract class Pupil implements Comparable<Pupil> {
 
     public abstract double getAcademicPerformanceRating();
 
-    @Override
+    /*@Override
     public String toString() {
         return "Name: " + name +
                 "\nSurname: " + surname +
                 "\nGender: " + gender +
                 "\nAge: " + age;
-    }
+    }*/
 }
