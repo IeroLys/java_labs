@@ -46,17 +46,24 @@ public class SchoolStudent extends Pupil implements PerformanceComparable { // �
 
     @Override
     public boolean isEligibleForScholarship() {
+// необходимые предметы
         String[] requiredSubjects = {"math", "russian", "history", "english"};
+// если нет необходимого предмета или оценка не 5
         for (String subject : requiredSubjects) {
             if (!subjectGrades.containsKey(subject) || subjectGrades.get(subject) != 5) {
                 return false;
             }
         }
+// оценка по другому предмету < 4
         for (int grade : subjectGrades.values()) {
             if (grade < 4) {
                 return false;
             }
         }
+
+// участие в регионе
+// городской уровень 1, 2, 3 места
+// школьный 1 место
         for (OlympiadParticipation participation : olympiadParticipations) {
             if (participation.getLevel() == OlympiadLevel.REGIONAL) {
                 return true;
@@ -74,7 +81,9 @@ public class SchoolStudent extends Pupil implements PerformanceComparable { // �
         if (subjectGrades.isEmpty()) {
             return 0.0;
         }
+// вычисляем среднее значение
         return subjectGrades.values().stream().mapToInt(Integer::intValue).average().orElse(0.0);
+// получаем оценки, создаём поток значений, преобразуем в int, считаем среднее
     }
 
     @Override
