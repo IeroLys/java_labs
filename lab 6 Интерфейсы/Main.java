@@ -120,12 +120,14 @@ public class Main {
 
         // Task 3: Sort school students by academic performance and school number
         // Use a compound comparator
+// сортируем по успеваемости и школе
         Comparator<SchoolStudent> comparator =
                 Comparator.comparingDouble(SchoolStudent::getAcademicPerformanceRating).reversed()
                         .thenComparingInt(SchoolStudent::getSchoolNumber);
-
+// сортируем по компаратору
         schoolStudents.sort(comparator);
 
+// выводы
         System.out.println("School students sorted by performance and school number:");
         System.out.println(String.format("%-20s %-20s %-10s %-5s %-10s %-15s", "Name", "Surname", "Gender", "Age", "School Number", "Performance"));
         for (SchoolStudent ss : schoolStudents) {
