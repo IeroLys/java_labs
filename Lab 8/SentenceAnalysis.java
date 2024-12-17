@@ -12,6 +12,7 @@ public class SentenceAnalysis {
         this.sentence = sentence;
     }
 
+// лямбда
     public int countWordsEndingWithEs() {
         return (int) Arrays.stream(sentence.split("[ ,]+"))
                 .filter(word -> word.endsWith("es"))
