@@ -7,7 +7,7 @@ public class Main {
         List<Student> students = new ArrayList<>();
 
         try {
-            // Create and add SchoolStudent instances
+           // создаём школьников и студентов
             SchoolStudent ss1 = new SchoolStudent("Alice", "Smith", "female", 14, 1);
             ss1.addSubjectGrade("math", 5);
             ss1.addSubjectGrade("russian", 5);
@@ -41,7 +41,7 @@ public class Main {
                 schoolStudents.add(ss3);
             }
 
-            // Create and add Student instances
+          
             Student st1 = new Student("Charlie", "Brown", "male", 20);
             st1.addExamGrade(5);
             st1.addExamGrade(5);
@@ -64,10 +64,10 @@ public class Main {
             System.err.println("Invalid data encountered: " + e.getMessage());
         }
 
-        // Task 1: Sort and print pupils by surname
-// sorting
+        // Задача 1: Сортируем по фамилиям степендиантов
+// сортируем
         Collections.sort(pupils);
-// outputs
+// выводы
         System.out.println("Eligible pupils sorted by surname:");
         System.out.println(String.format("%-20s %-20s %-10s %-5s", "Name", "Surname", "Gender", "Age"));
         for (Pupil pupil : pupils) {
@@ -75,7 +75,7 @@ public class Main {
         }
         System.out.println();
 
-        // Task 2: Find the best-performing student and school student
+        // Task 2: Найти лучшего студента и школьника
         Student bestStudent = null;
         SchoolStudent bestSchoolStudent = null;
 
@@ -118,9 +118,7 @@ public class Main {
         }
         System.out.println();
 
-        // Task 3: Sort school students by academic performance and school number
-        // Use a compound comparator
-// сортируем по успеваемости и школе
+        // Задача 3: сортируем по успеваемости и школе
         Comparator<SchoolStudent> comparator =
                 Comparator.comparingDouble(SchoolStudent::getAcademicPerformanceRating).reversed()
                         .thenComparingInt(SchoolStudent::getSchoolNumber);
@@ -135,7 +133,7 @@ public class Main {
         }
         System.out.println();
 
-        // Task 4: Sort students by academic performance
+        // Задача 4: сортируем студентов по успеваемости
         students.sort(Comparator.comparingDouble(Student::getAcademicPerformanceRating).reversed());
 
         System.out.println("Students sorted by performance:");
