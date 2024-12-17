@@ -46,6 +46,7 @@ System.out.println("Введите действительные числа. Дл
         System.out.println("Содержит нулевые элементы: " + hasZeros);
     }
 
+// добавить в середину списка элемент равный среднему ариф. между первым и последним элементом
     public void addAverageToMiddle() {
         double first = doubleList.getFirst();
         double last = doubleList.getLast();
