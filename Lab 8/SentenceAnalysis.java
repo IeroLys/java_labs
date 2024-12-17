@@ -29,7 +29,7 @@ public class SentenceAnalysis {
 // считаем сумму целых чисел в предложении
     public int sumOfIntegersInSentence() {
         int sum = 0;
-        Pattern pattern = Pattern.compile("-?\\d+");
+        Pattern pattern = Pattern.compile("-?\\d+"); // целые числа, включая отрицательные
         Matcher matcher = pattern.matcher(sentence);
         while (matcher.find()) {
             sum += Integer.parseInt(matcher.group());
