@@ -79,7 +79,7 @@ public class Main {
         }
         System.out.println();
 
-        // Task 2: Найти лучшего студента и школьника
+        // Задача 2: Найти лучшего студента и школьника
         Student bestStudent = null;
         SchoolStudent bestSchoolStudent = null;
 
